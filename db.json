@@ -1,0 +1,79 @@
+{
+  "flashCards": [
+    {
+      "id": 1,
+      "question": "What is React?",
+      "answer": "React is a JavaScript library for building user interfaces."
+    },
+    {
+      "id": 2,
+      "question": "What is JSX?",
+      "answer": "JSX is a syntax extension for JavaScript recommended for use with React."
+    },
+    {
+      "id": 3,
+      "question": "What is the virtual DOM?",
+      "answer": "The virtual DOM is a lightweight copy of the real DOM, used for efficient updating of the UI."
+    },
+    {
+      "id": 4,
+      "question": "Explain state in React.",
+      "answer": "State is a mechanism in React components that allows them to have mutable data."
+    },
+    {
+      "id": 5,
+      "question": "What are React props?",
+      "answer": "Props are short for properties and are used to pass data from one component to another."
+    },
+    {
+      "id": 6,
+      "question": "What is a React component?",
+      "answer": "A React component is a reusable piece of UI that can be composed with other components to build a complex UI."
+    },
+    {
+      "id": 7,
+      "question": "What is the purpose of the useEffect hook?",
+      "answer": "The useEffect hook is used for performing side effects in functional components, such as data fetching or subscriptions."
+    },
+    {
+      "id": 8,
+      "question": "What is the purpose of the useContext hook?",
+      "answer": "The useContext hook is used for accessing the values of React context outside of the render function."
+    },
+    {
+      "id": 9,
+      "question": "What is a higher-order component (HOC) in React?",
+      "answer": "A higher-order component is a function that takes a component and returns a new component with enhanced features or props."
+    },
+    {
+      "id": 10,
+      "question": "What is Redux?",
+      "answer": "Redux is a state management library for JavaScript applications, commonly used with React."
+    },
+    {
+      "id": 11,
+      "question": "Explain the concept of controlled components in React forms.",
+      "answer": "Controlled components are form elements whose values are controlled by React, allowing dynamic manipulation of form data."
+    },
+    {
+      "id": 12,
+      "question": "What is the purpose of the useCallback hook?",
+      "answer": "The useCallback hook is used to memoize functions in React, preventing unnecessary renders in child components."
+    },
+    {
+      "id": 13,
+      "question": "What is the React Router?",
+      "answer": "React Router is a library for handling navigation and routing in React applications."
+    },
+    {
+      "id": 14,
+      "question": "Explain the concept of code splitting in React.",
+      "answer": "Code splitting is a technique in React to split the bundle into smaller chunks, allowing for more efficient loading of the application."
+    },
+    {
+      "id": 15,
+      "question": "What is the purpose of the useMemo hook?",
+      "answer": "The useMemo hook is used to memoize values in React, preventing unnecessary calculations during renders."
+    }
+  ]
+}
