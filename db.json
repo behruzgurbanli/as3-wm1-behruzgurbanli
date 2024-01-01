@@ -1,79 +1,109 @@
 {
-  "flashCards": [
+  "cards": [
     {
       "id": 1,
-      "question": "What is React?",
-      "answer": "React is a JavaScript library for building user interfaces."
+      "front": "What is React?",
+      "back": "React is a JavaScript library for building user interfaces.",
+      "lastModified": "2023-01-01T12:00:00Z",
+      "status": "Want to Learn"
     },
     {
       "id": 2,
-      "question": "What is JSX?",
-      "answer": "JSX is a syntax extension for JavaScript recommended for use with React."
+      "front": "Explain the concept of JSX.",
+      "back": "JSX is a syntax extension for JavaScript recommended for use with React.",
+      "lastModified": "2023-01-02T14:30:00Z",
+      "status": "Learned"
     },
     {
       "id": 3,
-      "question": "What is the virtual DOM?",
-      "answer": "The virtual DOM is a lightweight copy of the real DOM, used for efficient updating of the UI."
+      "front": "What is the virtual DOM?",
+      "back": "The virtual DOM is a lightweight copy of the real DOM, used for efficient updating of the UI.",
+      "lastModified": "2023-01-03T09:45:00Z",
+      "status": "Noted"
     },
     {
       "id": 4,
-      "question": "Explain state in React.",
-      "answer": "State is a mechanism in React components that allows them to have mutable data."
+      "front": "Explain the concept of state in React.",
+      "back": "State is a mechanism in React components that allows them to have mutable data.",
+      "lastModified": "2023-01-04T16:20:00Z",
+      "status": "Want to Learn"
     },
     {
       "id": 5,
-      "question": "What are React props?",
-      "answer": "Props are short for properties and are used to pass data from one component to another."
+      "front": "What are React props?",
+      "back": "Props are short for properties and are used to pass data from one component to another.",
+      "lastModified": "2023-01-05T11:10:00Z",
+      "status": "Learned"
     },
     {
       "id": 6,
-      "question": "What is a React component?",
-      "answer": "A React component is a reusable piece of UI that can be composed with other components to build a complex UI."
+      "front": "What is a React component?",
+      "back": "A React component is a reusable piece of UI that can be composed with other components to build a complex UI.",
+      "lastModified": "2023-01-06T14:50:00Z",
+      "status": "Noted"
     },
     {
       "id": 7,
-      "question": "What is the purpose of the useEffect hook?",
-      "answer": "The useEffect hook is used for performing side effects in functional components, such as data fetching or subscriptions."
+      "front": "What is the purpose of the useEffect hook?",
+      "back": "The useEffect hook is used for performing side effects in functional components, such as data fetching or subscriptions.",
+      "lastModified": "2023-01-07T10:30:00Z",
+      "status": "Learned"
     },
     {
       "id": 8,
-      "question": "What is the purpose of the useContext hook?",
-      "answer": "The useContext hook is used for accessing the values of React context outside of the render function."
+      "front": "What is the useContext hook?",
+      "back": "The useContext hook is used for accessing the values of React context outside of the render function.",
+      "lastModified": "2023-01-08T12:15:00Z",
+      "status": "Want to Learn"
     },
     {
       "id": 9,
-      "question": "What is a higher-order component (HOC) in React?",
-      "answer": "A higher-order component is a function that takes a component and returns a new component with enhanced features or props."
+      "front": "Explain the concept of a higher-order component (HOC) in React.",
+      "back": "A higher-order component is a function that takes a component and returns a new component with enhanced features or props.",
+      "lastModified": "2023-01-09T15:40:00Z",
+      "status": "Noted"
     },
     {
       "id": 10,
-      "question": "What is Redux?",
-      "answer": "Redux is a state management library for JavaScript applications, commonly used with React."
+      "front": "What is Redux?",
+      "back": "Redux is a state management library for JavaScript applications, commonly used with React.",
+      "lastModified": "2023-01-10T11:55:00Z",
+      "status": "Learned"
     },
     {
       "id": 11,
-      "question": "Explain the concept of controlled components in React forms.",
-      "answer": "Controlled components are form elements whose values are controlled by React, allowing dynamic manipulation of form data."
+      "front": "Explain the concept of controlled components in React forms.",
+      "back": "Controlled components are form elements whose values are controlled by React, allowing dynamic manipulation of form data.",
+      "lastModified": "2023-01-11T09:20:00Z",
+      "status": "Want to Learn"
     },
     {
       "id": 12,
-      "question": "What is the purpose of the useCallback hook?",
-      "answer": "The useCallback hook is used to memoize functions in React, preventing unnecessary renders in child components."
+      "front": "What is the purpose of the useCallback hook?",
+      "back": "The useCallback hook is used to memoize functions in React, preventing unnecessary renders in child components.",
+      "lastModified": "2023-01-12T14:25:00Z",
+      "status": "Noted"
     },
     {
       "id": 13,
-      "question": "What is the React Router?",
-      "answer": "React Router is a library for handling navigation and routing in React applications."
+      "front": "What is React Router?",
+      "back": "React Router is a library for handling navigation and routing in React applications.",
+      "lastModified": "2023-01-13T16:10:00Z",
+      "status": "Learned"
     },
     {
       "id": 14,
-      "question": "Explain the concept of code splitting in React.",
-      "answer": "Code splitting is a technique in React to split the bundle into smaller chunks, allowing for more efficient loading of the application."
+      "front": "Explain the concept of code splitting in React.",
+      "back": "Code splitting is a technique in React to split the bundle into smaller chunks, allowing for more efficient loading of the application.",
+      "lastModified": "2023-01-14T10:45:00Z",
+      "status": "Want to Learn"
     },
     {
       "id": 15,
-      "question": "What is the purpose of the useMemo hook?",
-      "answer": "The useMemo hook is used to memoize values in React, preventing unnecessary calculations during renders."
+      "front": "What is the purpose of the useMemo hook?",
+      "back": "The useMemo hook is used to memoize values in React, preventing unnecessary calculations during renders.",
+      "lastModified": "2023-01-15T12:35:00Z",
+      "status": "Noted"
     }
   ]
 }
