@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import ProjectsPage from '../components/Projects'
 
 const Home = () => {
     const [projects, setProjects] = useState([]);
@@ -19,8 +20,20 @@ const Home = () => {
     }, []);
 
     return (
+    <>
         <Navbar />
-    )
-}
+        <div className='homepage'>
+            <div className='intro'>
+                <h1 className='welcome-message'>Welcome to My Website!</h1>
+                <p>
+                    You can access the Flashcard application and my other projects in this website! <br />
+                    I am Bahruz Gurbanli who is a Computer Science student at ADA University.
+                </p>
+            </div>
+            <ProjectsPage projects={ projects } />
+        </div>
+    </>
+    );
+};
 
 export default Home;
