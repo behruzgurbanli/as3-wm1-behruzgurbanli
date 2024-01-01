@@ -1,4 +1,25 @@
 {
+  "projects": [
+    {
+      "id": 1,
+      "title": "Product Listing Website",
+      "link": "https://github.com/behruzgurbanli/as2-wm1-bahruzgurbanli",
+      "description": "This web application allows users to browse and explore a list of products with advanced filtering, searching, and pagination features. The application is built using HTML, JavaScript, and CSS."
+    },
+    {
+      "id": 2,
+      "title": "Personal Web Page",
+      "link": "https://github.com/behruzgurbanli/web-and-mobile-behruzgurbanli",
+      "description": "This is a personal website application that I developed for assignment of 'Web & Mobile I' course."
+    },
+    {
+      "id": 3,
+      "title": "Online Banking System",
+      "link": "https://github.com/SITE-ADA/as1-simple-java-app-for-implementing-a-banking-system-behruzgurbanli",
+      "description": "This is an Online Banking System which was developed by me as an assignment from Programming Principles II course in ADA University."
+    }
+  ]
+  ,
   "cards": [
     {
       "id": 1,
