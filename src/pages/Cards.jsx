@@ -7,7 +7,7 @@ function Cards() {
 
     const fetchCards = useCallback(async () => {
         try {
-            const response = await axios.get("http://localhost:3001/cards?_limit=10&");
+            const response = await axios.get("http://localhost:3001/cards?_limit=10");
             const initialFetch = response.data;
 
             setCards(initialFetch);
