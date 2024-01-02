@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import Card from './Card.jsx'
+import Card from './Card'
 import axios from 'axios';
 
 const CardManagement = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import CardManagement from '../components/CardManagement.jsx';
-import Navbar from '../components/Navbar.jsx'
+import CardManagement from '../components/CardManagement';
+import Navbar from '../components/Navbar'
 import '../assets/cards.css'
 
 function Cards() {

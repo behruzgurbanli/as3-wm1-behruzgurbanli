@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../components/Navbar.jsx';
-import ContactForm from '../components/ContactForm.jsx';
+import Navbar from '../components/Navbar';
+import ContactForm from '../components/ContactForm';
 import '../assets/contact.css'
 
 function Contact() {
