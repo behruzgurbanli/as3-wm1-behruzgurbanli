@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import Card from './Card.jsx'
 import axios from 'axios';
-import Card from './Card';
 
 const CardManagement = () => {
     const [cards, setCards] = useState([]);
@@ -13,7 +13,7 @@ const CardManagement = () => {
         } catch (error) {
             console.error("Error: ", error);
         }
-    }, [fetchCards]);
+    }, []);
 
     useEffect(() => {
         fetchCards();
@@ -55,7 +55,43 @@ const CardManagement = () => {
         }
     }, []);
 
-    
+    return (
+        <div>
+            {/* Create new card form */}
+            <input
+                type="text"
+                placeholder="Front"
+                value={newCard.front}
+                onChange={(e) => setNewCard({ ...newCard, front: e.target.value })}
+            />
+            <input
+                type="text"
+                placeholder="Back"
+                value={newCard.back}
+                onChange={(e) => setNewCard({ ...newCard, back: e.target.value })}
+            />
+            <select
+                value={newCard.status}
+                onChange={(e) => setNewCard({ ...newCard, status: e.target.value })}
+            >
+                <option value="Want to Learn">Want to Learn</option>
+                <option value="Learned">Learned</option>
+                <option value="Noted">Noted</option>
+            </select>
+            <button onClick={handleCreateCard}>Create Card</button>
+
+            {/* Display existing cards */}
+            {cards.map((card) => (
+                <Card
+                    key={card.id}
+                    {...card}
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                />
+            ))}
+        </div>
+    );
+
 }
 
 export default CardManagement;
