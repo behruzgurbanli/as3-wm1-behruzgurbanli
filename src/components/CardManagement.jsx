@@ -5,11 +5,14 @@ import axios from 'axios';
 const CardManagement = () => {
     const [cards, setCards] = useState([]);
     const [newCard, setNewCard] = useState({ front: '', back: '', status: 'Want to Learn'});
+    const [searchText, setSearchText] = useState('');
+    const [filterStatus, setFilterStatus] = useState('');
 
     const fetchCards = useCallback(async () => {
         try {
             const response = await axios.get("http://localhost:3001/cards");
-            setCards(response.data);
+            const sortedCards = response.data.sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
+            setCards(sortedCards);
         } catch (error) {
             console.error("Error: ", error);
         }
@@ -17,7 +20,11 @@ const CardManagement = () => {
 
     useEffect(() => {
         fetchCards();
-    }, []);
+    });
+
+    useEffect(() => {
+        handleSearch(searchText);
+    }, [searchText, filterStatus]);
 
     const handleCreateCard = useCallback(async () => {
         try {
@@ -55,8 +62,49 @@ const CardManagement = () => {
         }
     }, []);
 
+    const handleSearch = useCallback(async (searchText) => {
+        try {
+            const response = await axios.get("http://localhost:3001/cards");
+            const allCards = response.data;
+
+            // Filter by status
+            const filteredByStatus = filterStatus ? allCards.filter(card => card.status === filterStatus) : allCards;
+
+            // Filter by search text
+            const filteredCards = filteredByStatus.filter(card =>
+                card.front.toLowerCase().includes(searchText.toLowerCase()) ||
+                card.back.toLowerCase().includes(searchText.toLowerCase())
+            );
+
+            setCards(filteredCards);
+        } catch (error) {
+            console.error("Error searching cards: ", error);
+        }
+    }, [filterStatus]);
+
+    const handleFilterStatusChange = (selectedStatus) => {
+        setFilterStatus(selectedStatus);
+        handleSearch(searchText); // Update cards based on the new status filter
+    };
+
     return (
         <div>
+            <input
+                type="text"
+                placeholder="Search cards..."
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+            />
+            <select
+                value={filterStatus}
+                onChange={(e) => handleFilterStatusChange(e.target.value)}
+            >
+                <option value="">All</option>
+                <option value="Want to Learn">Want to Learn</option>
+                <option value="Learned">Learned</option>
+                <option value="Noted">Noted</option>
+            </select>
+
             {/* Create new card form */}
             <input
                 type="text"
@@ -78,6 +126,7 @@ const CardManagement = () => {
                 <option value="Learned">Learned</option>
                 <option value="Noted">Noted</option>
             </select>
+            
             <button onClick={handleCreateCard}>Create Card</button>
 
             {/* Display existing cards */}
