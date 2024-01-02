@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import FlashCard from '../components/FlashCard.jsx';
+import Navbar from '../components/Navbar.jsx'
 import axios from 'axios';
 import '../assets/cards.css'
 
@@ -15,6 +17,21 @@ function Cards() {
             console.error("Error: ", error);
         }
     }, []);
+
+    useEffect(() => {
+        fetchCards();
+    }, []);
+
+    return (
+    <>
+        <Navbar />
+        {cards.map((card) => (
+            <FlashCard key={ card.id } {...card} />
+        ))
+
+        }
+    </>
+    );
 }
 
 export default Cards;
