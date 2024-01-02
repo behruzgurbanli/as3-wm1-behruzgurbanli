@@ -8,7 +8,7 @@ const CardManagement = () => {
 
     const fetchCards = useCallback(async () => {
         try {
-            const response = await axios.get("http://localhost:3001/cards?_limit=5");
+            const response = await axios.get("http://localhost:3001/cards");
             setCards(response.data);
         } catch (error) {
             console.error("Error: ", error);
@@ -21,7 +21,7 @@ const CardManagement = () => {
 
     const handleCreateCard = useCallback(async () => {
         try {
-            const response = await axios.get('http://localhost:3001/cards', {
+            const response = await axios.post('http://localhost:3001/cards', {
                 ...newCard,
                 lastModified: new Date().toISOString(),
             });

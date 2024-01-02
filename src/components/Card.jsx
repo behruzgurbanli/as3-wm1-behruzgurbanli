@@ -11,6 +11,7 @@ const Card = (props) => {
             <p>Answer: { props.back }</p>
             <p>Status: { props.status }</p>
             <p>Last Modified: { new Date(props.lastModified).toLocaleDateString() }</p>
+            <button onClick={() => props.onDelete(props.id)}>Delete</button>
         </div>
         
     );
