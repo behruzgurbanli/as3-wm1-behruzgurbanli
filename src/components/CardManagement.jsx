@@ -1,6 +1,8 @@
 import { useEffect, useState, useCallback } from 'react';
 import Card from './Card'
 import axios from 'axios';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const CardManagement = () => {
     const [cards, setCards] = useState([]);
@@ -87,7 +89,17 @@ const CardManagement = () => {
         handleSearch(searchText); // Update cards based on the new status filter
     };
 
+    const handleCardDrop = async (id, newIndex) => {
+        try {
+          await axios.patch(`http://localhost:3001/cards/${id}`, { newIndex });
+          // Handle success or update state if needed
+        } catch (error) {
+          console.error('Error updating card order:', error);
+        }
+      };
+
     return (
+        <DndProvider backend={HTML5Backend}>
         <div>
             <input
                 type="text"
@@ -136,9 +148,11 @@ const CardManagement = () => {
                     {...card}
                     onEdit={handleEdit}
                     onDelete={handleDelete}
+                    onDrop={handleCardDrop}
                 />
             ))}
         </div>
+        </DndProvider>
     );
 
 }
