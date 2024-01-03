@@ -6,7 +6,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const CardManagement = () => {
     const [cards, setCards] = useState([]);
-    const [newCard, setNewCard] = useState({ front: '', back: '', status: 'Want to Learn'});
+    const [newCard, setNewCard] = useState({ front: '', back: '', status: ''});
     const [searchText, setSearchText] = useState('');
     const [filterStatus, setFilterStatus] = useState('');
 
@@ -35,7 +35,8 @@ const CardManagement = () => {
                 lastModified: new Date().toISOString(),
             });
             setCards(prevCards => [...prevCards, response.data]);
-            setNewCard({ front: '', back: '', status: 'Want to Learn' });
+            setNewCard({ front: '', back: '', status: '' });
+            console.log("New card has been successfully created!");
         } catch (error) {
             console.error("Error creating card: ", error);
         }
@@ -69,10 +70,10 @@ const CardManagement = () => {
             const response = await axios.get("http://localhost:3001/cards");
             const allCards = response.data;
 
-            // Filter by status
+            
             const filteredByStatus = filterStatus ? allCards.filter(card => card.status === filterStatus) : allCards;
 
-            // Filter by search text
+            
             const filteredCards = filteredByStatus.filter(card =>
                 card.front.toLowerCase().includes(searchText.toLowerCase()) ||
                 card.back.toLowerCase().includes(searchText.toLowerCase())
@@ -86,7 +87,7 @@ const CardManagement = () => {
 
     const handleFilterStatusChange = (selectedStatus) => {
         setFilterStatus(selectedStatus);
-        handleSearch(searchText); // Update cards based on the new status filter
+        handleSearch(searchText);
     };
 
     const handleCardDrop = async (id, newIndex) => {
