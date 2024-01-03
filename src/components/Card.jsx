@@ -11,9 +11,10 @@ const Card = (props) => {
       back: props.back,
       status: props.status
     });
+    const [isSelected, setIsSelected] = useState(false);
 
     const handleFlip = () => {
-      if (!isEditing)
+      if (!isEditing && !isSelected)
         setIsFlipped(!isFlipped);
     };
 
@@ -44,7 +45,7 @@ const Card = (props) => {
       onClick={handleFlip}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-  >
+      >
       <div className={`card ${isFlipped ? 'flipped' : ''}`}>
           <div className={`card-inner ${isEditing ? 'editing' : ''}`}>
               <div className="card-front">
@@ -84,6 +85,10 @@ const Card = (props) => {
                           <h4>{props.front}</h4>
                           <p>Status: {props.status}</p>
                           <p>Last Modified: {new Date(props.lastModified).toLocaleString()}</p>
+                          <input type="checkbox" checked={props.isSelected} onChange={() => {
+                            props.onSelect(props.id);
+                            setIsFlipped(false);
+                          }} />
                       </>
                   )}
               </div>

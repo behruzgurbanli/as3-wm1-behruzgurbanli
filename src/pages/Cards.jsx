@@ -6,7 +6,7 @@ function Cards() {
 
     return (
         <>
-        <CardManagement error={error} setError={setError} />
+        <CardManagement setError={setError} />
         {error && <div className='error-message'>{error}</div>}
         </>
     );

@@ -5,12 +5,13 @@ import axios from 'axios';
 // import { HTML5Backend } from 'react-dnd-html5-backend';
 import '../assets/CardManagement.css';
 
-const CardManagement = ({ error, setError }) => {
+const CardManagement = ({ setError }) => {
     const [cards, setCards] = useState([]);
     const [newCards, setNewCards] = useState({ front: '', back: '', status: ''});
     const [searchText, setSearchText] = useState('');
     const [filterStatus, setFilterStatus] = useState('');
     const [sortOption, setSortOption] = useState('newest');
+    const [selectedCards, setSelectedCards] = useState([]);
 
     const fetchCards = useCallback(async () => {
         try {
@@ -114,8 +115,28 @@ const CardManagement = ({ error, setError }) => {
         handleSearch(searchText);
     };
 
+    const handleCardSelect = (cardId) => {
+        const isSelected = selectedCards.includes(cardId);
+        if (isSelected) {
+            setSelectedCards(selectedCards.filter((id) => id !== cardId));
+        } else {
+            setSelectedCards([...selectedCards, cardId]);
+        }
+    };
+
+    const handleSendViaEmail = () => {
+        const selectedCardsData = cards.filter((card) => selectedCards.includes(card.id));
+        const jsonData = JSON.stringify(selectedCardsData, null, 2);
+
+        const mailto = `mailto:?subject=FlashCards&body=${encodeURIComponent(jsonData)}`;
+
+        window.location.href = mailto;
+    };
+
     return (
-        // <DndProvider backend={HTML5Backend}>
+        <>
+        {/* <DndProvider backend={HTML5Backend}> */}
+        <button onClick={handleSendViaEmail}>Send Selected via Email</button>
         <div>
             <input
                 type="text"
@@ -171,17 +192,20 @@ const CardManagement = ({ error, setError }) => {
             </div>
 
             {/* Display existing cards */}
-            {cards.map((card) => (
+            {cards.map((card, idx) => (
                 <Card
                     key={card.id}
                     {...card}
                     onEdit={handleEdit}
                     onDelete={handleDelete}
+                    onSelect={handleCardSelect}
+                    isSelected={selectedCards.includes(card.id)}
                     // onDrop={handleCardDrop}
                 />
             ))}
         </div>
-        // </DndProvider>
+        {/* </DndProvider> */}
+        </>
     );
 
 }
