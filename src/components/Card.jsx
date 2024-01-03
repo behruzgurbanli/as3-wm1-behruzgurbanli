@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
+// import { useDrag, useDrop } from 'react-dnd';
 import '../assets/card.css';
 
 const Card = (props) => {
@@ -25,23 +25,9 @@ const Card = (props) => {
       setIsEditing(false);
     }
 
-    const [, drag] = useDrag({
-        type: 'CARD',
-        item: { id: props.id, index: props.index },
-      });
-
-      const [, drop] = useDrop({
-        accept: 'CARD',
-        hover: (draggedItem) => {
-          if (draggedItem.id !== props.id) {
-            props.onDrop(draggedItem.id, props.index);
-          }
-        },
-    });
-
     return (
         <div className="card-container" onClick={handleFlip} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-        <div className={`card ${isFlipped ? 'flipped' : ''}`} ref={(node) => drag(drop(node))}>
+        <div className={`card ${isFlipped ? 'flipped' : ''}`}>
           <div className={`card-inner ${isEditing ? 'editing' : ''}`}>
             <div className="card-front">
               <h4>{props.front}</h4>

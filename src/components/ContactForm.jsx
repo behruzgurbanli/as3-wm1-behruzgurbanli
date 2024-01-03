@@ -31,6 +31,7 @@ const ContactForm = () => {
       }, 3000);
 
     } catch (error) {
+      setNotification('Message sent failed!');
       console.error('Error sending message:', error);
     } finally {
       setFormData({
