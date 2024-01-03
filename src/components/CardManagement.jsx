@@ -15,13 +15,13 @@ const CardManagement = () => {
     const fetchCards = useCallback(async () => {
         try {
             const response = await axios.get("http://localhost:3001/cards");
-            const sortedCards = [...response.data];
-
-            if (sortOption === 'newest') {
-                sortedCards = sortedCards.sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
-            } else if (sortOption === 'oldest') {
-                sortedCards = sortedCards.sort((a, b) => new Date(a.lastModified) - new Date(b.lastModified));
-            }
+            const sortedCards = [...response.data].sort((a, b) =>
+                    sortOption === 'newest'
+                        ? new Date(b.lastModified) - new Date(a.lastModified)
+                        : sortOption === 'oldest'
+                        ? new Date(a.lastModified) - new Date(b.lastModified)
+                        : 0
+                );
 
             setCards(sortedCards);
         } catch (error) {
@@ -125,7 +125,6 @@ const CardManagement = () => {
                 className='sort-input'
                 onChange={(e) => setSortOption(e.target.value)}
             >
-                <option value="">Sort by</option>
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
             </select>
