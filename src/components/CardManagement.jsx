@@ -6,19 +6,27 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const CardManagement = () => {
     const [cards, setCards] = useState([]);
-    const [newCard, setNewCard] = useState({ front: '', back: '', status: ''});
+    const [newCards, setNewCards] = useState({ front: '', back: '', status: ''});
     const [searchText, setSearchText] = useState('');
     const [filterStatus, setFilterStatus] = useState('');
+    const [sortOption, setSortOption] = useState('');
 
     const fetchCards = useCallback(async () => {
         try {
             const response = await axios.get("http://localhost:3001/cards");
-            const sortedCards = response.data.sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
+            const sortedCards = [...response.data];
+
+            if (sortOption === 'newest') {
+                sortedCards = sortedCards.sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
+            } else if (sortOption === 'oldest') {
+                sortedCards = sortedCards.sort((a, b) => new Date(a.lastModified) - new Date(b.lastModified));
+            }
+
             setCards(sortedCards);
         } catch (error) {
             console.error("Error: ", error);
         }
-    });
+    }, [sortOption]);
 
     useEffect(() => {
         fetchCards();
@@ -31,16 +39,16 @@ const CardManagement = () => {
     const handleCreateCard = useCallback(async () => {
         try {
             const response = await axios.post('http://localhost:3001/cards', {
-                ...newCard,
+                ...newCards,
                 lastModified: new Date().toISOString(),
             });
             setCards(prevCards => [...prevCards, response.data]);
-            setNewCard({ front: '', back: '', status: '' });
+            setNewCards({ front: '', back: '', status: '' });
             console.log("New card has been successfully created!");
         } catch (error) {
             console.error("Error creating card: ", error);
         }
-    }, [newCard, fetchCards]);
+    }, [newCards, fetchCards]);
 
     const handleEdit = useCallback(async (updatedCard) => {
         try {
@@ -93,7 +101,6 @@ const CardManagement = () => {
     const handleCardDrop = async (id, newIndex) => {
         try {
           await axios.patch(`http://localhost:3001/cards/${id}`, { newIndex });
-          // Handle success or update state if needed
         } catch (error) {
           console.error('Error updating card order:', error);
         }
@@ -118,22 +125,31 @@ const CardManagement = () => {
                 <option value="Noted">Noted</option>
             </select>
 
+            <select
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+            >
+                <option value="">Sort by</option>
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+            </select>
+
             {/* Create new card form */}
             <input
                 type="text"
                 placeholder="Front"
-                value={newCard.front}
-                onChange={(e) => setNewCard({ ...newCard, front: e.target.value })}
+                value={newCards.front}
+                onChange={(e) => setNewCards({ ...newCards, front: e.target.value })}
             />
             <input
                 type="text"
                 placeholder="Back"
-                value={newCard.back}
-                onChange={(e) => setNewCard({ ...newCard, back: e.target.value })}
+                value={newCards.back}
+                onChange={(e) => setNewCards({ ...newCards, back: e.target.value })}
             />
             <select
-                value={newCard.status}
-                onChange={(e) => setNewCard({ ...newCard, status: e.target.value })}
+                value={newCards.status}
+                onChange={(e) => setNewCards({ ...newCards, status: e.target.value })}
             >
                 <option value="Want to Learn">Want to Learn</option>
                 <option value="Learned">Learned</option>
