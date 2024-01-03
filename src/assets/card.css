@@ -1,23 +1,24 @@
-.card {
-  background-color: transparent;
-  width: 300px;
-  height: 200px;
-  border: 1px solid #f1f1f1;
-  perspective: 1000px;
+.card-container {
   position: relative;
+  width: 300px; /* Adjust as needed */
+  margin: 20px auto; /* Center the card */
+}
+
+.card {
+  border-radius: 15px 0 15px 0;
+  width: 100%;
+  height: 200px; /* Adjust as needed */
+  perspective: 1000px;
   cursor: pointer;
-  margin: 10px;
-  border-radius: 8px;
-  overflow: hidden;
+  position: relative;
+  background-color: #f0f0f0; /* Light gray background color */
 }
 
 .card-inner {
-  position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
   transform-style: preserve-3d;
+  transition: transform 0.5s;
 }
 
 .card.flipped .card-inner {
@@ -26,53 +27,43 @@
 
 .card-front,
 .card-back {
-  position: absolute;
   width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
+  height: 80%;
+  position: absolute;
   backface-visibility: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.card-front {
-  background-color: #bbb;
-  color: black;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .card-back {
-  background-color: dodgerblue;
-  color: white;
   transform: rotateY(180deg);
+  background-color: #cfe2f3; /* Light blue background color for the back of the card */
 }
 
-.card.hovered .card-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.card-actions-container {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.card-actions button {
-  margin-top: 8px;
-  padding: 8px;
-  background-color: #3498db;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
+.card-actions-container button {
+  padding: 8px 12px;
+  margin: 8px;
   cursor: pointer;
-  font-size: 14px;
 }
 
-.card-actions button:hover {
-  background-color: #2980b9;
-}
-
-.card-actions {
-  display: none;
+/* Add your own styles for the rest of the card details */
+.card h4,
+.card p {
+  margin: 0;
 }

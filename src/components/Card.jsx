@@ -30,30 +30,26 @@ const Card = (props) => {
     });
 
     return (
-        <div
-        className={`card ${isFlipped ? 'flipped' : ''} ${isHovered ? 'hovered' : ''}`}
-        onClick={handleFlip}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        ref={(node) => drag(drop(node))}
-    >
-        <div className={`card-inner ${isEditing ? 'editing' : ''}`}>
+        <div className="card-container" onClick={handleFlip} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        <div className={`card ${isFlipped ? 'flipped' : ''}`} ref={(node) => drag(drop(node))}>
+          <div className={`card-inner ${isEditing ? 'editing' : ''}`}>
             <div className="card-front">
-                <h4>{ props.front }</h4>
-                <p>Status: { props.status }</p>
-                <p>Last Modified: { new Date(props.lastModified).toLocaleDateString() }</p>
+              <h4>{props.front}</h4>
+              <p>Status: {props.status}</p>
+              <p>Last Modified: {new Date(props.lastModified).toLocaleDateString()}</p>
             </div>
             <div className="card-back">
-                <p>Answer: { props.back }</p>
+              <p>Answer: {props.back}</p>
             </div>
-            {isHovered && !isEditing && (
-                <div className="card-actions">
-                    <button onClick={ () => props.onDelete(props.id) }>Delete</button>
-                    <button onClick={ handleEdit }>Edit</button>
-                </div>
-            )}
+          </div>
         </div>
-    </div>
+        {!isEditing && (
+          <div className="card-actions">
+            <button onClick={() => props.onDelete(props.id)}>Delete</button>
+            <button onClick={handleEdit}>Edit</button>
+          </div>
+        )}
+      </div>
     );
 }
 
