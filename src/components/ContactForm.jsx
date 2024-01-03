@@ -29,26 +29,28 @@ const ContactForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Subject:
-          <input type="text" name="subject" value={formData.subject} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Email:
-          <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Message:
-          <textarea name="content" value={formData.content} onChange={handleInputChange}></textarea>
-        </label>
-        <br />
-        <button type="submit">Submit</button>
+    <>
+    <div className="contact-form-container">
+      <h1>Contact Me</h1>
+      <form className="contact-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="subject">Subject:</label>
+          <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleInputChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} />
+        </div>
+        <div className="form-group">
+          <label htmlFor="content">Message:</label>
+          <textarea id="content" name="content" value={formData.content} onChange={handleInputChange}></textarea>
+        </div>
+        <div className="form-group">
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
+    </>
   );
 };
 
