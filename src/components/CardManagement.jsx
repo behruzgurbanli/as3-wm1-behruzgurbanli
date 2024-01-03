@@ -5,7 +5,7 @@ import axios from 'axios';
 // import { HTML5Backend } from 'react-dnd-html5-backend';
 import '../assets/CardManagement.css';
 
-const CardManagement = () => {
+const CardManagement = ({ error, setError }) => {
     const [cards, setCards] = useState([]);
     const [newCards, setNewCards] = useState({ front: '', back: '', status: ''});
     const [searchText, setSearchText] = useState('');
@@ -25,6 +25,7 @@ const CardManagement = () => {
 
             setCards(sortedCards);
         } catch (error) {
+            setError('Oops... Server did not respond. Please try again later.');
             console.error("Error: ", error);
         }
     }, [sortOption]);
@@ -37,6 +38,14 @@ const CardManagement = () => {
         handleSearch(searchText);
     }, [searchText, filterStatus]);
 
+    const handleSort = useCallback(() => {
+        fetchCards();
+    }, [fetchCards]);
+
+    useEffect(() => {
+        handleSort();  
+    }, [sortOption]);
+
     const handleCreateCard = useCallback(async () => {
         try {
             const response = await axios.post('http://localhost:3001/cards', {
@@ -47,6 +56,7 @@ const CardManagement = () => {
             setNewCards({ front: '', back: '', status: '' });
             console.log("New card has been successfully created!");
         } catch (error) {
+            setError('Oops... The card could not be created. Please try again later.');
             console.error("Error creating card: ", error);
         }
     }, [newCards, fetchCards]);
@@ -61,6 +71,7 @@ const CardManagement = () => {
                 prevCards.map((card) => (card.id === updatedCard.id ? response.data : card))
                 );
         } catch (error) {
+            setError('Oops... The card could not be updated. Please try again later.');
             console.error("Error updating card: ", error);
         }
     }, []);
@@ -70,6 +81,7 @@ const CardManagement = () => {
             await axios.delete(`http://localhost:3001/cards/${cardId}`);
             setCards(prevCards => prevCards.filter((card) => card.id !== cardId));
         } catch (error) {
+            setError('Oops... The card could not be deleted. Please try again later.');
             console.error("Error deleting card: ", error);
         }
     }, []);
@@ -90,6 +102,7 @@ const CardManagement = () => {
 
             setCards(filteredCards);
         } catch (error) {
+            setError('Oops... Search failed. Please try again later.');
             console.error("Error searching cards: ", error);
         }
     }, [filterStatus]);
