@@ -1,6 +1,5 @@
 #navigation-bar {
     background-color: #2ecc71;
-    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
@@ -11,14 +10,14 @@
   }
   
   .links a {
-    flex: 1; /* Make the <a> take full width */
+    flex: 1;
     text-decoration: none;
     color: #ecf0f1;
     font-size: 18px;
     padding: 15px;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
-    text-align: center; /* Center the text within the <a> */
+    text-align: center;
   }
   
   .links a:hover {
@@ -26,12 +25,10 @@
     color: #ffffff;
   }
   
-  /* Add a smooth transition to the box-shadow */
   #navigation-bar:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  /* Responsive Design */
   @media (max-width: 768px) {
     .links {
       flex-direction: column;
