@@ -3,6 +3,7 @@ import Card from './Card'
 import axios from 'axios';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import '../assets/CardManagement.css';
 
 const CardManagement = () => {
     const [cards, setCards] = useState([]);
@@ -113,10 +114,12 @@ const CardManagement = () => {
                 type="text"
                 placeholder="Search cards..."
                 value={searchText}
+                className='search-input'
                 onChange={(e) => setSearchText(e.target.value)}
             />
             <select
                 value={filterStatus}
+                className='filter-input'
                 onChange={(e) => handleFilterStatusChange(e.target.value)}
             >
                 <option value="">All</option>
@@ -127,6 +130,7 @@ const CardManagement = () => {
 
             <select
                 value={sortOption}
+                className='sort-input'
                 onChange={(e) => setSortOption(e.target.value)}
             >
                 <option value="">Sort by</option>
@@ -135,6 +139,7 @@ const CardManagement = () => {
             </select>
 
             {/* Create new card form */}
+            <div className='create-card'>
             <input
                 type="text"
                 placeholder="Front"
@@ -157,6 +162,7 @@ const CardManagement = () => {
             </select>
             
             <button onClick={handleCreateCard}>Create Card</button>
+            </div>
 
             {/* Display existing cards */}
             {cards.map((card) => (

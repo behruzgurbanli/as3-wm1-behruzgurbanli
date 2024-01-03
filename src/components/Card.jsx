@@ -6,6 +6,11 @@ const Card = (props) => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    const [editedContent, setEditedContent] = useState({
+      front: props.front,
+      back: props.back,
+      status: props.status
+    });
 
     const handleFlip = () => {
         setIsFlipped(!isFlipped);
@@ -14,6 +19,11 @@ const Card = (props) => {
     const handleEdit = () => {
         setIsEditing(!isEditing);
     };
+
+    const handleSave = () => {
+      props.onEdit({ ...props, ...editedContent });
+      setIsEditing(false);
+    }
 
     const [, drag] = useDrag({
         type: 'CARD',
@@ -43,10 +53,10 @@ const Card = (props) => {
             </div>
           </div>
         </div>
-        {!isEditing && (
+        {isHovered && !isEditing && (
           <div className="card-actions">
-            <button onClick={() => props.onDelete(props.id)}>Delete</button>
-            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleEdit} className='btn edit'>Edit</button>
+            <button onClick={() => props.onDelete(props.id)} className='btn delete'>Delete</button>
           </div>
         )}
       </div>

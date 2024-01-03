@@ -8,6 +8,7 @@ const ContactForm = () => {
     email: '',
     content: '',
   });
+  const [notification, setNotification] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -23,8 +24,20 @@ const ContactForm = () => {
     try {
       await axios.post('http://localhost:3001/messages', formData);
       console.log('Message sent successfully!');
+
+      setNotification('Message sent successfully!');
+      setTimeout(() => {
+        setNotification(null);
+      }, 3000);
+
     } catch (error) {
       console.error('Error sending message:', error);
+    } finally {
+      setFormData({
+        subject: '',
+        email: '',
+        content: '',
+      });
     }
   };
 
@@ -35,20 +48,21 @@ const ContactForm = () => {
       <form className="contact-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="subject">Subject:</label>
-          <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleInputChange} />
+          <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleInputChange} required/>
         </div>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} />
+          <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required/>
         </div>
         <div className="form-group">
           <label htmlFor="content">Message:</label>
-          <textarea id="content" name="content" value={formData.content} onChange={handleInputChange}></textarea>
+          <textarea id="content" name="content" value={formData.content} onChange={handleInputChange} required></textarea>
         </div>
         <div className="form-group">
           <button type="submit">Submit</button>
         </div>
       </form>
+      {notification && <div className="notification">{notification}</div>}
     </div>
     </>
   );
