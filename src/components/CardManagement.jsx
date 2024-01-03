@@ -18,11 +18,11 @@ const CardManagement = () => {
         } catch (error) {
             console.error("Error: ", error);
         }
-    }, []);
+    });
 
     useEffect(() => {
         fetchCards();
-    });
+    }, [searchText, filterStatus]);
 
     useEffect(() => {
         handleSearch(searchText);
@@ -39,7 +39,7 @@ const CardManagement = () => {
         } catch (error) {
             console.error("Error creating card: ", error);
         }
-    }, [newCard]);
+    }, [newCard, fetchCards]);
 
     const handleEdit = useCallback(async (updatedCard) => {
         try {

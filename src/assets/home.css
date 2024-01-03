@@ -1,0 +1,42 @@
+.homepage {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .intro {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .welcome-message {
+    font-size: 24px;
+    color: #3498db;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  /* Style the Projects section */
+  .projects-section {
+    margin-top: 40px;
+  }
+  
+  /* Add responsive styles */
+  @media (max-width: 768px) {
+    .homepage {
+      padding: 10px;
+    }
+  
+    .welcome-message {
+      font-size: 20px;
+    }
+  
+    p {
+      font-size: 14px;
+    }
+  }
+  

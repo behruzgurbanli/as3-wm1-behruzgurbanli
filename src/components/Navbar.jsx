@@ -3,12 +3,21 @@ import { NavLink } from 'react-router-dom';
 import '../assets/navbar.css'
 
 function Navbar() {
+
+    const navLinks = [
+      { to: '/home', label: 'Home' },
+      { to: '/cards', label: 'Cards' },
+      { to: '/contact', label: 'Contact Me' },
+    ];
+
     return (
         <nav id='navigation-bar'>
             <div className='links'>
-                <NavLink to='/home'>Home</NavLink>
-                <NavLink to='/cards'>Cards</NavLink>
-                <NavLink to='/contact'>Contact Me</NavLink>
+                {
+                    navLinks.map((link, idx) => (
+                        <NavLink key={ idx } to={ link.to }>{ link.label }</NavLink>
+                    ))
+                }
             </div>
         </nav>
     )
