@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/as3-wm1-behruzgurbanli/static/css/main.b1d85b49.css",
+    "main.js": "/as3-wm1-behruzgurbanli/static/js/main.d1288244.js",
+    "static/media/page-not-found.webp": "/as3-wm1-behruzgurbanli/static/media/page-not-found.29ff6e4af3dcfab9a508.webp",
+    "index.html": "/as3-wm1-behruzgurbanli/index.html",
+    "main.b1d85b49.css.map": "/as3-wm1-behruzgurbanli/static/css/main.b1d85b49.css.map",
+    "main.d1288244.js.map": "/as3-wm1-behruzgurbanli/static/js/main.d1288244.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1d85b49.css",
+    "static/js/main.d1288244.js"
+  ]
+}
