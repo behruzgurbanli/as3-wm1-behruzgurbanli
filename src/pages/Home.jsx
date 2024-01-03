@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
 import Projects from '../components/Projects'
 import '../assets/home.css';
 
@@ -25,7 +24,6 @@ function Home() {
 
     return (
     <>
-        <Navbar />
         <div className='homepage'>
             <div className='intro'>
                 <h1 className='welcome-message'>Welcome to My Website!</h1>
