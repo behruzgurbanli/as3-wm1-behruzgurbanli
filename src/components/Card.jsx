@@ -84,16 +84,17 @@ const Card = (props) => {
                       <>
                           <h4>{props.front}</h4>
                           <p>Status: {props.status}</p>
-                          <p>Last Modified: {new Date(props.lastModified).toLocaleString()}</p>
+                          <span>Select card: </span>
                           <input type="checkbox" checked={props.isSelected} onChange={() => {
                             props.onSelect(props.id);
                             setIsFlipped(false);
                           }} />
+                          <p className='last-modified'>Last Modified: {new Date(props.lastModified).toLocaleString()}</p>
                       </>
                   )}
               </div>
               <div className="card-back">
-                  <p>Answer: {props.back}</p>
+                  <p>{props.back}</p>
               </div>
           </div>
       </div>

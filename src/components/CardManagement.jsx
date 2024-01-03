@@ -49,10 +49,15 @@ const CardManagement = ({ setError }) => {
 
     const handleCreateCard = useCallback(async () => {
         try {
+
+            if (!newCards.status) 
+                newCards.status = 'Want to Learn';
+
             const response = await axios.post('http://localhost:3001/cards', {
                 ...newCards,
                 lastModified: new Date().toISOString(),
             });
+
             setCards(prevCards => [...prevCards, response.data]);
             setNewCards({ front: '', back: '', status: '' });
             console.log("New card has been successfully created!");
@@ -133,11 +138,17 @@ const CardManagement = ({ setError }) => {
         window.location.href = mailto;
     };
 
+    const handleCreateCardSubmit = (e) => {
+        e.preventDefault(); 
+        handleCreateCard();
+      };
+
     return (
         <>
+        <div className='card-management'>
         {/* <DndProvider backend={HTML5Backend}> */}
-        <button onClick={handleSendViaEmail}>Send Selected via Email</button>
         <div>
+            <span>Search</span>
             <input
                 type="text"
                 placeholder="Search cards..."
@@ -145,6 +156,8 @@ const CardManagement = ({ setError }) => {
                 className='search-input'
                 onChange={(e) => setSearchText(e.target.value)}
             />
+            
+            <span>Filter</span>
             <select
                 value={filterStatus}
                 className='filter-input'
@@ -156,6 +169,7 @@ const CardManagement = ({ setError }) => {
                 <option value="Noted">Noted</option>
             </select>
 
+            <span>Sort</span>
             <select
                 value={sortOption}
                 className='sort-input'
@@ -165,19 +179,24 @@ const CardManagement = ({ setError }) => {
                 <option value="oldest">Oldest</option>
             </select>
 
+            <button onClick={handleSendViaEmail} className='btn share'>Share Selected via Email</button>
+        </div>
             {/* Create new card form */}
-            <div className='create-card'>
+            <form className='create-card' onSubmit={handleCreateCardSubmit}>
+            <h3>Create a New Card</h3>
             <input
                 type="text"
                 placeholder="Front"
                 value={newCards.front}
                 onChange={(e) => setNewCards({ ...newCards, front: e.target.value })}
+                required
             />
             <input
                 type="text"
                 placeholder="Back"
                 value={newCards.back}
                 onChange={(e) => setNewCards({ ...newCards, back: e.target.value })}
+                required
             />
             <select
                 value={newCards.status}
@@ -188,8 +207,8 @@ const CardManagement = ({ setError }) => {
                 <option value="Noted">Noted</option>
             </select>
             
-            <button onClick={handleCreateCard}>Create Card</button>
-            </div>
+            <button type='submit' className='btn create'>Create Card</button>
+            </form>
 
             {/* Display existing cards */}
             {cards.map((card, idx) => (

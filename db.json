@@ -24,13 +24,6 @@
   ],
   "cards": [
     {
-      "front": "",
-      "back": "",
-      "status": "",
-      "lastModified": "2019-01-03T18:18:34.640Z",
-      "id": 16
-    },
-    {
       "id": 2,
       "front": "Explain the concept of JSX.",
       "back": "JSX is a syntax extension for JavaScript recommended for use with React.",
@@ -127,13 +120,6 @@
       "back": "The useMemo hook is used to memoize values in React, preventing unnecessary calculations during renders.",
       "lastModified": "2023-01-15T12:35:00Z",
       "status": "Noted"
-    },
-    {
-      "id": 17,
-      "front": "sdf",
-      "back": "sdfsf",
-      "status": "Noted",
-      "lastModified": "2024-01-03T20:09:09.932Z"
     }
   ]
 }
