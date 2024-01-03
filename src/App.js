@@ -6,16 +6,14 @@ import Cards from './pages/Cards.jsx'
 
 function App() {
     return(
-        <div className='App'>
-            <Router>
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/home' element={<Home />} />
-                    <Route path='/contact' element={<Contact />} />
-                    <Route path='/cards' element={<Cards />} />
-                </Routes>
-            </Router>
-        </div>
+        <Router>
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/home' element={<Home />} />
+                <Route path='/contact' element={<Contact />} />
+                <Route path='/cards' element={<Cards />} />
+            </Routes>
+        </Router>
     )
 };
   

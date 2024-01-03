@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/projects.css';
 
-function ProjectsPage({ projects }) {
+function Projects({ projects }) {
     return (
         <div>
             <h2>My Projects</h2>
@@ -17,4 +17,4 @@ function ProjectsPage({ projects }) {
     )
 };
 
-export default ProjectsPage;
+export default Projects;

@@ -20,12 +20,10 @@
     color: #555;
   }
   
-  /* Style the Projects section */
   .projects-section {
     margin-top: 40px;
   }
   
-  /* Add responsive styles */
   @media (max-width: 768px) {
     .homepage {
       padding: 10px;
@@ -40,3 +38,12 @@
     }
   }
   
+  .error-message {
+    background-color: #fff;
+    color: #ff5c5c;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
