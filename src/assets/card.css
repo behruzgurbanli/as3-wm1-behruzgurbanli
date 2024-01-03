@@ -5,6 +5,7 @@
 }
 
 .card {
+  border-radius: 20px 0 20px 0;
   width: 100%;
   height: 300px; /* Adjust as needed */
   perspective: 1000px;
@@ -27,7 +28,7 @@
 .card-front,
 .card-back {
   width: 100%;
-  height: 70%;
+  height: 100%;
   position: absolute;
   backface-visibility: hidden;
   display: flex;
@@ -41,6 +42,7 @@
 .card-back {
   transform: rotateY(180deg);
   background-color: #cfe2f3; /* Light blue background color for the back of the card */
+  border-radius: 20px 0 20px 0;
 }
 
 .card-actions-container {

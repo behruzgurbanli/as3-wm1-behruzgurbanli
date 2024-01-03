@@ -10,7 +10,7 @@ const CardManagement = ({ error, setError }) => {
     const [newCards, setNewCards] = useState({ front: '', back: '', status: ''});
     const [searchText, setSearchText] = useState('');
     const [filterStatus, setFilterStatus] = useState('');
-    const [sortOption, setSortOption] = useState('');
+    const [sortOption, setSortOption] = useState('newest');
 
     const fetchCards = useCallback(async () => {
         try {
@@ -40,7 +40,7 @@ const CardManagement = ({ error, setError }) => {
 
     const handleSort = useCallback(() => {
         fetchCards();
-    }, [fetchCards]);
+    }, [fetchCards, sortOption]);
 
     useEffect(() => {
         handleSort();  
@@ -58,6 +58,8 @@ const CardManagement = ({ error, setError }) => {
         } catch (error) {
             setError('Oops... The card could not be created. Please try again later.');
             console.error("Error creating card: ", error);
+        } finally {
+            handleSort();
         }
     }, [newCards, fetchCards]);
 

@@ -19,6 +19,7 @@ const Card = (props) => {
 
     const handleEdit = (e) => {
         e.stopPropagation();
+        setIsFlipped(false);
         setIsEditing(!isEditing);
     };
 
@@ -56,6 +57,13 @@ const Card = (props) => {
                                   setEditedContent({ ...editedContent, front: e.target.value })
                               }
                           />
+                          <input
+                              type="text"
+                              value={editedContent.back}
+                              onChange={(e) =>
+                                  setEditedContent({ ...editedContent, back: e.target.value })
+                              }
+                          />
                           <select
                                 value={editedContent.status}
                                 onChange={(e) => setEditedContent({ ...editedContent, status: e.target.value })}
@@ -67,7 +75,7 @@ const Card = (props) => {
                            <button onClick={handleSave} className="btn edit">
                             Save
                           </button>
-                          <button onClick={handleCancelEdit} className="btn edit">
+                          <button onClick={handleCancelEdit} className="btn delete">
                             Cancel
                           </button>
                       </>
