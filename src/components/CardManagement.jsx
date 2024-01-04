@@ -1,8 +1,8 @@
 import { useEffect, useState, useCallback } from 'react';
 import Card from './Card'
 import axios from 'axios';
-// import { DndProvider } from 'react-dnd';
-// import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import '../assets/CardManagement.css';
 
 const CardManagement = ({ setError }) => {
@@ -33,7 +33,7 @@ const CardManagement = ({ setError }) => {
 
     useEffect(() => {
         fetchCards();
-    }, [searchText, filterStatus]);
+    }, [searchText, filterStatus, fetchCards]);
 
     useEffect(() => {
         handleSearch(searchText);
@@ -67,7 +67,7 @@ const CardManagement = ({ setError }) => {
         } finally {
             handleSort();
         }
-    }, [newCards, fetchCards]);
+    }, [newCards, fetchCards, setError]);
 
     const handleEdit = useCallback(async (updatedCard) => {
         try {
@@ -82,7 +82,7 @@ const CardManagement = ({ setError }) => {
             setError('Oops... The card could not be updated. Please try again later.');
             console.error("Error updating card: ", error);
         }
-    }, []);
+    }, [setError]);
 
     const handleDelete = useCallback(async (cardId) => {
         try {
@@ -92,7 +92,7 @@ const CardManagement = ({ setError }) => {
             setError('Oops... The card could not be deleted. Please try again later.');
             console.error("Error deleting card: ", error);
         }
-    }, []);
+    }, [setError]);
 
     const handleSearch = useCallback(async (searchText) => {
         try {
@@ -113,7 +113,7 @@ const CardManagement = ({ setError }) => {
             setError('Oops... Search failed. Please try again later.');
             console.error("Error searching cards: ", error);
         }
-    }, [filterStatus]);
+    }, [filterStatus, setError]);
 
     const handleFilterStatusChange = (selectedStatus) => {
         setFilterStatus(selectedStatus);
@@ -138,15 +138,40 @@ const CardManagement = ({ setError }) => {
         window.location.href = mailto;
     };
 
+    const handleSendViaWhatsapp = () => {
+        const selectedCardsData = cards.filter((card) => selectedCards.includes(card.id));
+        const jsonData = JSON.stringify(selectedCardsData, null, 2);
+
+        const whatsappto = `https://wa.me/?text=${encodeURIComponent(jsonData)}`;
+
+        window.open(whatsappto, '_blank');
+    };
+
     const handleCreateCardSubmit = (e) => {
         e.preventDefault(); 
         handleCreateCard();
       };
 
+      const handleCardDrop = async (draggedIndex, droppedIndex) => {
+        const updatedCards = [...cards];
+        const [draggedCard] = updatedCards.splice(draggedIndex, 1);
+        updatedCards.splice(droppedIndex, 0, draggedCard);
+        setCards(updatedCards);
+    
+        try {
+            await axios.put('http://localhost:3001/cards', { cards: updatedCards });
+    
+            console.log('Card order updated on the server.');
+        } catch (error) {
+            setError('Oops... Failed to update card order on the server. Please try again later.');
+            console.error('Error updating card order on the server:', error);
+        }
+    };
+    
+
     return (
         <>
         <div className='card-management'>
-        {/* <DndProvider backend={HTML5Backend}> */}
         <div>
             <span>Search</span>
             <input
@@ -179,7 +204,8 @@ const CardManagement = ({ setError }) => {
                 <option value="oldest">Oldest</option>
             </select>
 
-            <button onClick={handleSendViaEmail} className='btn share'>Share Selected via Email</button>
+            <button onClick={handleSendViaEmail} className='btn share'>Share via <i class="fa fa-envelope" style={{fontSize: '20px', color: 'white', marginLeft: '5px'}}></i></button>
+            <button onClick={handleSendViaWhatsapp} className='btn share'>Share via <i class="fa fa-whatsapp" style={{fontSize: '20px', color: 'white', marginLeft: '5px'}}></i></button>
         </div>
             {/* Create new card form */}
             <form className='create-card' onSubmit={handleCreateCardSubmit}>
@@ -209,7 +235,7 @@ const CardManagement = ({ setError }) => {
             
             <button type='submit' className='btn create'>Create Card</button>
             </form>
-
+            <DndProvider backend={HTML5Backend}>
             {/* Display existing cards */}
             {cards.map((card, idx) => (
                 <Card
@@ -219,11 +245,11 @@ const CardManagement = ({ setError }) => {
                     onDelete={handleDelete}
                     onSelect={handleCardSelect}
                     isSelected={selectedCards.includes(card.id)}
-                    // onDrop={handleCardDrop}
+                    onDrop={handleCardDrop}
                 />
             ))}
+            </DndProvider>
         </div>
-        {/* </DndProvider> */}
         </>
     );
 

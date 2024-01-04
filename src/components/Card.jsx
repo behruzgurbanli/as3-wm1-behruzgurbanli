@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { useDrag, useDrop } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
 import '../assets/card.css';
 
 const Card = (props) => {
@@ -14,7 +14,7 @@ const Card = (props) => {
     const [isSelected, setIsSelected] = useState(false);
 
     const handleFlip = () => {
-      if (!isEditing && !isSelected)
+      if (!isEditing && !isSelected && !isDragging)
         setIsFlipped(!isFlipped);
     };
 
@@ -38,10 +38,29 @@ const Card = (props) => {
         setIsEditing(false);
     }
 
+    const [{ isDragging }, drag] = useDrag({
+        type: 'CARD',
+        item: { id: props.id, index: props.index },
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
+    });
+
+    const [, drop] = useDrop({
+        accept: 'CARD',
+        hover: (item) => {
+            if (item.index !== props.index) {
+                props.onDrop(item.index, props.index);
+                item.index = props.index;
+            }
+        },
+    });
+
     return (
         <>
       <div
-      className="card-container"
+      ref={(node) => drag(drop(node))}
+      className={`card-container ${isDragging ? 'dragging' : ''}`}
       onClick={handleFlip}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -88,6 +107,7 @@ const Card = (props) => {
                           <input type="checkbox" checked={props.isSelected} onChange={() => {
                             props.onSelect(props.id);
                             setIsFlipped(false);
+                            setIsSelected(!isSelected);
                           }} />
                           <p className='last-modified'>Last Modified: {new Date(props.lastModified).toLocaleString()}</p>
                       </>
