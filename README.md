@@ -32,6 +32,9 @@
     $ npm start
 ```
 
+## Deployed Demo:
+<h3><a href="https://behruzgurbanli.github.io/as3-wm1-behruzgurbanli/">Link</a></h3>
+
 ## Project Structure
 -    src/: Contains the source code for the React app.
  -   components/: Reusable React components.

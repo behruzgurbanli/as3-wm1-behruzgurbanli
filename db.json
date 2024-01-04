@@ -20,16 +20,20 @@
     }
   ],
   "messages": [
-    {}
+    {
+      "subject": "sdfsd",
+      "email": "bsdfhgsdf@mail.com",
+      "content": "sdfsdf",
+      "id": 1
+    },
+    {
+      "subject": "sdfsd",
+      "email": "fdgdfg@sdfsd.com",
+      "content": "dfhgdfkj",
+      "id": 2
+    }
   ],
   "cards": [
-    {
-      "id": 2,
-      "front": "Explain the concept of JSX.",
-      "back": "JSX is a syntax extension for JavaScript recommended for use with React.",
-      "status": "Learned",
-      "lastModified": "2024-01-03T17:51:30.141Z"
-    },
     {
       "id": 3,
       "front": "What is the virtual DOM?",
